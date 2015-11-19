@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://localhost:8080/APCB_Business2/APCBBusinessServices?wsdl" uri="wsdl/localhost_8080/APCB_Business2/APCBBusinessServices.wsdl"/>
-    <system systemId="http://localhost:8080/APCB_Business2/APCBBusinessServices?xsd=1" uri="wsdl/localhost_8080/APCB_Business2/APCBBusinessServices.xsd_1.xsd"/>
-    <system systemId="http://localhost:8080/APCB_Business2/APCBBusinessServices?WSDL" uri="wsdl/localhost_8080/APCB_Business2/APCBBusinessServices.wsdl"/>
-    <system systemId="http://localhost:8080/APCB_Business/BusinessServices?wsdl" uri="wsdl/localhost_8080/APCB_Business/BusinessServices.wsdl"/>
-    <system systemId="http://localhost:8080/APCB_Business/BusinessServices?xsd=1" uri="wsdl/localhost_8080/APCB_Business/BusinessServices.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/APCB_Business/APCBBusinessServices?wsdl" uri="wsdl/localhost_8080/APCB_Business/APCBBusinessServices.wsdl"/>
     <system systemId="http://localhost:8080/APCB_Business/APCBBusinessServices?xsd=1" uri="wsdl/localhost_8080/APCB_Business/APCBBusinessServices.xsd_1.xsd"/>
 </catalog>

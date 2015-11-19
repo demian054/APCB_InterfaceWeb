@@ -8,7 +8,6 @@ package com.apcb.interfaceWeb.process;
 
 import com.apcb.business.services.APCBBusinessServices;
 import com.apcb.utils.conection.ServiceGenerator;
-import com.apcb.utils.entities.PropertiesReader;
 import com.apcb.utils.entities.Request;
 import com.apcb.utils.entities.Response;
 import com.google.gson.Gson;

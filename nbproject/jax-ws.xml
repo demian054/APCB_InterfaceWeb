@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
-  <services>
-    <service name="APCBInterfaceWebServices">
-      <implementation-class>com.apcb.interfaceWeb.services.APCBInterfaceWebServices</implementation-class>
-    </service>
-  </services>
+  <services/>
   <clients>
     <client name="APCBBusinessServices">
       <wsdl-url>http://localhost:8080/APCB_Business/APCBBusinessServices?wsdl</wsdl-url>
@@ -39,5 +35,4 @@
       </wsimport-options>
     </client>
   </clients>
-  <jsr109>false</jsr109>
 </jax-ws>
