@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "APCBBusinessServices", targetNamespace = "http://services.business.apcb.com/", wsdlLocation = "http://localhost:8080/APCB_Business2/APCBBusinessServices?wsdl")
+@WebServiceClient(name = "APCBBusinessServices", targetNamespace = "http://services.business.apcb.com/", wsdlLocation = "http://localhost:8080/APCB_Business/APCBBusinessServices?wsdl")
 public class APCBBusinessServices_Service
     extends Service
 {
@@ -30,7 +30,7 @@ public class APCBBusinessServices_Service
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:8080/APCB_Business2/APCBBusinessServices?wsdl");
+            url = new URL("http://localhost:8080/APCB_Business/APCBBusinessServices?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

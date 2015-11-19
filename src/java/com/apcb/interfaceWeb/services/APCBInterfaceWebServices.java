@@ -6,12 +6,12 @@
 
 package com.apcb.interfaceWeb.services;
 
-import com.apcb.business.services.APCBBusinessServices;
+import com.apcb.interfaceWeb.process.APCBInterfaceWebProcess;
 import com.apcb.utils.entities.Message;
 
 import com.apcb.utils.entities.Request;
 import com.apcb.utils.entities.Response;
-import com.apcb.utils.entities.ServiceGenerator;
+import com.apcb.utils.conection.ServiceGenerator;
 import com.apcb.utils.ticketsHandler.Enums.MessagesTypeEnum;
 import com.google.gson.Gson;
 import java.util.logging.Level;
@@ -27,23 +27,20 @@ import org.apache.log4j.Logger;
  */
 @WebService(serviceName = "APCBInterfaceWebServices")
 public class APCBInterfaceWebServices {
-    private static final Logger logger = LogManager.getLogger(APCBInterfaceWebServices.class);
+    private static final Logger log = LogManager.getLogger(APCBInterfaceWebServices.class);
     private final Gson gson = new Gson(); 
     
     @WebMethod(operationName = "test")
     public String test(@WebParam(name = "strRequest") String strRequest) {
-        logger.debug("request:"+strRequest);
-        Request request = gson.fromJson(strRequest, Request.class);
-        Response response = null;
+        Response response = new Response();
         try {
-            APCBBusinessServices sBusiness = ServiceGenerator.ServiceGenerator(APCBBusinessServices.class);
-            request.setMessage(new Message(MessagesTypeEnum.Ok));
-            response = gson.fromJson(sBusiness.test(gson.toJson(request)), Response.class);
-            
+            Request request = new Request(strRequest); 
+            APCBInterfaceWebProcess process = new APCBInterfaceWebProcess();
+            response = process.webTicketAirAvailAndPrice(request);
         } catch (Exception e) {
-            logger.error("Error.. ", e);
-         }
-        logger.debug("response:"+gson.toJson(response));
+            response.setMessage(new Message(MessagesTypeEnum.AplicationErrorNotHandler));
+            log.error(response.getMessage().getMsgDesc(), e);
+        }
         return gson.toJson(response);
     }
     

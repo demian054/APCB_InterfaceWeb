@@ -32,10 +32,10 @@ public interface APCBBusinessServices {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "test", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.Test")
-    @ResponseWrapper(localName = "testResponse", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TestResponse")
-    @Action(input = "http://services.business.apcb.com/APCBBusinessServices/testRequest", output = "http://services.business.apcb.com/APCBBusinessServices/testResponse")
-    public String test(
+    @RequestWrapper(localName = "ticketAirAvailAndPrice", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TicketAirAvailAndPrice")
+    @ResponseWrapper(localName = "ticketAirAvailAndPriceResponse", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TicketAirAvailAndPriceResponse")
+    @Action(input = "http://services.business.apcb.com/APCBBusinessServices/ticketAirAvailAndPriceRequest", output = "http://services.business.apcb.com/APCBBusinessServices/ticketAirAvailAndPriceResponse")
+    public String ticketAirAvailAndPrice(
         @WebParam(name = "request", targetNamespace = "")
         String request);
 

@@ -24,8 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Test_QNAME = new QName("http://services.business.apcb.com/", "test");
-    private final static QName _TestResponse_QNAME = new QName("http://services.business.apcb.com/", "testResponse");
+    private final static QName _TicketAirAvailAndPrice_QNAME = new QName("http://services.business.apcb.com/", "ticketAirAvailAndPrice");
+    private final static QName _TicketAirAvailAndPriceResponse_QNAME = new QName("http://services.business.apcb.com/", "ticketAirAvailAndPriceResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.apcb.business.services
@@ -35,37 +35,37 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Test }
+     * Create an instance of {@link TicketAirAvailAndPriceResponse }
      * 
      */
-    public Test createTest() {
-        return new Test();
+    public TicketAirAvailAndPriceResponse createTicketAirAvailAndPriceResponse() {
+        return new TicketAirAvailAndPriceResponse();
     }
 
     /**
-     * Create an instance of {@link TestResponse }
+     * Create an instance of {@link TicketAirAvailAndPrice }
      * 
      */
-    public TestResponse createTestResponse() {
-        return new TestResponse();
+    public TicketAirAvailAndPrice createTicketAirAvailAndPrice() {
+        return new TicketAirAvailAndPrice();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Test }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TicketAirAvailAndPrice }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "test")
-    public JAXBElement<Test> createTest(Test value) {
-        return new JAXBElement<Test>(_Test_QNAME, Test.class, null, value);
+    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "ticketAirAvailAndPrice")
+    public JAXBElement<TicketAirAvailAndPrice> createTicketAirAvailAndPrice(TicketAirAvailAndPrice value) {
+        return new JAXBElement<TicketAirAvailAndPrice>(_TicketAirAvailAndPrice_QNAME, TicketAirAvailAndPrice.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TestResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TicketAirAvailAndPriceResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "testResponse")
-    public JAXBElement<TestResponse> createTestResponse(TestResponse value) {
-        return new JAXBElement<TestResponse>(_TestResponse_QNAME, TestResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "ticketAirAvailAndPriceResponse")
+    public JAXBElement<TicketAirAvailAndPriceResponse> createTicketAirAvailAndPriceResponse(TicketAirAvailAndPriceResponse value) {
+        return new JAXBElement<TicketAirAvailAndPriceResponse>(_TicketAirAvailAndPriceResponse_QNAME, TicketAirAvailAndPriceResponse.class, null, value);
     }
 
 }
