@@ -20,8 +20,8 @@ import org.apache.log4j.Logger;
  * @author Demian
  */
 public class APCBInterfaceWebProcess {
-    private static final Logger log = LogManager.getLogger(APCBInterfaceWebProcess.class);
-    private final Gson gson = new Gson(); 
+    private Logger log = LogManager.getLogger(APCBInterfaceWebProcess.class);
+    private Gson gson = new Gson(); 
 
     public Response webTicketAirAvailAndPrice(Request request) throws IOException, Exception {
  
