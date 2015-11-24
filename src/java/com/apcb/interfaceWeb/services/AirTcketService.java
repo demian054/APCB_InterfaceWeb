@@ -75,21 +75,16 @@ public class AirTcketService {
             itinerary.setDepartureDateTime(Calendar.getInstance());
             itinerary.setDestinationLocationCode(LocationEnum.CCS);
             itinerary.setDirectFlightsOnly(true);
-
             itinerary.setOriginLocationCode(LocationEnum.CCS);
-
             Passanger passanger = new Passanger();
             passanger.setPassangerType(PassangerTypeEnum.ADT);
             passanger.setPassangerQuantity(1);
 
             itinerary.putPassangers(passanger);
-            
-            
             request.setSesionId("1");
             log.info(gson.toJson(request.getSesionId()));
             request.setMessage(new Message(MessagesTypeEnum.Ok));
             log.info(gson.toJson(request.getMessage()));
-            
             //request.setBeam(gson.toJson(itinerary), Itinerary.class);
             request.setBeam(new Beam(gson.toJson(itinerary), Itinerary.class.getSimpleName()));
             log.info(gson.toJson(request.getBeam()));
@@ -102,7 +97,7 @@ public class AirTcketService {
             response.setMessage(new Message(MessagesTypeEnum.Error_AplicationErrorNotHandler));
             log.error(response.getMessage().getMsgDesc(), e);
         }
-        return gson.toJson(response);
+        return gson.toJson(response).replace("\\", "");
     }
  
     @POST
