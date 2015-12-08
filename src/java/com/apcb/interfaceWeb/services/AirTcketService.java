@@ -31,10 +31,12 @@ import com.apcb.utils.ticketsHandler.Enums.LocationEnum;
 import com.apcb.utils.ticketsHandler.Enums.MessagesTypeEnum;
 import com.apcb.utils.ticketsHandler.Enums.PassangerTypeEnum;
 import com.apcb.utils.ticketsHandler.entities.Itinerary;
+import com.apcb.utils.ticketsHandler.entities.Travel;
 import com.apcb.utils.ticketsHandler.entities.Passanger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
@@ -66,30 +68,38 @@ public class AirTcketService {
     public String getAirTicket(@PathParam("request") String strRequest) {
          Response response = new Response();
         try {
-            //Request request = new Request(strRequest); 
+            
             Request request = new Request(); 
+            Travel travel = new Travel();
+
+            travel.setCabin(CabinTypeEnum.Economy);
+            travel.setDirectFlightsOnly(true);
+            
             Itinerary itinerary = new Itinerary();
-
-            itinerary.setCabin(CabinTypeEnum.Economy);
-
-            itinerary.setDepartureDateTime(Calendar.getInstance());
-            itinerary.setDestinationLocationCode(LocationEnum.CCS);
-            itinerary.setDirectFlightsOnly(true);
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(2015, 11, 8);
+            itinerary.setDepartureDateTime(calendar);
+            itinerary.setDestinationLocationCode(LocationEnum.CUM);
             itinerary.setOriginLocationCode(LocationEnum.CCS);
+            
+            travel.putItinerary(itinerary);
+            
             Passanger passanger = new Passanger();
             passanger.setPassangerType(PassangerTypeEnum.ADT);
             passanger.setPassangerQuantity(1);
 
-            itinerary.putPassangers(passanger);
+            travel.putPassangers(passanger);
             request.setSesionId("1");
             log.info(gson.toJson(request.getSesionId()));
             request.setMessage(new Message(MessagesTypeEnum.Ok));
             log.info(gson.toJson(request.getMessage()));
             //request.setBeam(gson.toJson(itinerary), Itinerary.class);
-            request.setBeam(new Beam(gson.toJson(itinerary), Itinerary.class.getSimpleName()));
-            log.info(gson.toJson(request.getBeam()));
+            request.setBeam(new Beam(gson.toJson(travel), Travel.class.getSimpleName()));
             
+            log.info(gson.toJson(request));
             
+            //request = new Request(strRequest); 
+            //log.info(gson.toJson(request.getBeam()));
             
             APCBInterfaceWebProcess process = new APCBInterfaceWebProcess();
             response = process.webTicketAirAvailAndPrice(request);
