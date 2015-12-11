@@ -77,10 +77,18 @@ public class AirTcketService {
             
             Itinerary itinerary = new Itinerary();
             Calendar calendar = Calendar.getInstance();
-            calendar.set(2015, 11, 8);
+            try{
+                String[] fecha = strRequest.split("-");
+                calendar.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1])-1, Integer.parseInt(fecha[0]),0,0,0);
+            }catch(Exception e){
+                e.printStackTrace();
+                response.setMessage(new Message(MessagesTypeEnum.ErrorValidate_DateFormatIncorrect));
+                return gson.toJson(response).replace("\\", "");
+            }
+           
             itinerary.setDepartureDateTime(calendar);
-            itinerary.setDestinationLocationCode(LocationEnum.CUM);
             itinerary.setOriginLocationCode(LocationEnum.CCS);
+            itinerary.setDestinationLocationCode(LocationEnum.CUM);
             
             travel.putItinerary(itinerary);
             
