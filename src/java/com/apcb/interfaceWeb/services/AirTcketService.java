@@ -30,9 +30,9 @@ import com.apcb.utils.ticketsHandler.Enums.CabinTypeEnum;
 import com.apcb.utils.ticketsHandler.Enums.LocationEnum;
 import com.apcb.utils.ticketsHandler.Enums.MessagesTypeEnum;
 import com.apcb.utils.ticketsHandler.Enums.PassangerTypeEnum;
-import com.apcb.utils.ticketsHandler.entities.Itinerary;
-import com.apcb.utils.ticketsHandler.entities.Travel;
-import com.apcb.utils.ticketsHandler.entities.Passanger;
+import com.apcb.utils.ticketsHandler.entities.APCB_Itinerary;
+import com.apcb.utils.ticketsHandler.entities.APCB_Travel;
+import com.apcb.utils.ticketsHandler.entities.APCB_Passenger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Calendar;
@@ -70,12 +70,12 @@ public class AirTcketService {
         try {
             
             Request request = new Request(); 
-            Travel travel = new Travel();
+            APCB_Travel travel = new APCB_Travel();
 
             travel.setCabin(CabinTypeEnum.Economy);
             travel.setDirectFlightsOnly(true);
             
-            Itinerary itinerary = new Itinerary();
+            APCB_Itinerary itinerary = new APCB_Itinerary();
             Calendar calendar = Calendar.getInstance();
             try{
                 String[] fecha = strRequest.split("-");
@@ -88,21 +88,32 @@ public class AirTcketService {
            
             itinerary.setDepartureDateTime(calendar);
             itinerary.setOriginLocationCode(LocationEnum.CCS);
-            itinerary.setDestinationLocationCode(LocationEnum.CUM);
+            itinerary.setDestinationLocationCode(LocationEnum.PMV);
             
             travel.putItinerary(itinerary);
             
-            Passanger passanger = new Passanger();
-            passanger.setPassangerType(PassangerTypeEnum.ADT);
-            passanger.setPassangerQuantity(1);
-
+            APCB_Passenger passanger = new APCB_Passenger();
+            passanger.setPassangerType(PassangerTypeEnum.Adulto);
+            passanger.setPassangerQuantity(3);
             travel.putPassangers(passanger);
+            
+            passanger = new APCB_Passenger();
+            passanger.setPassangerType(PassangerTypeEnum.Niño);
+            passanger.setPassangerQuantity(2);
+            travel.putPassangers(passanger);
+            
+            passanger = new APCB_Passenger();
+            passanger.setPassangerType(PassangerTypeEnum.Infante);
+            passanger.setPassangerQuantity(1);
+            travel.putPassangers(passanger);
+            
+            
             request.setSesionId("1");
             log.info(gson.toJson(request.getSesionId()));
             request.setMessage(new Message(MessagesTypeEnum.Ok));
             log.info(gson.toJson(request.getMessage()));
             //request.setBeam(gson.toJson(itinerary), Itinerary.class);
-            request.setBeam(new Beam(gson.toJson(travel), Travel.class.getSimpleName()));
+            request.setBeam(new Beam(gson.toJson(travel), APCB_Travel.class.getSimpleName()));
             
             log.info(gson.toJson(request));
             
