@@ -31,20 +31,22 @@ import com.apcb.utils.ticketsHandler.Enums.LocationEnum;
 import com.apcb.utils.ticketsHandler.Enums.MessagesTypeEnum;
 import com.apcb.utils.ticketsHandler.Enums.PassangerTypeEnum;
 import com.apcb.utils.ticketsHandler.entities.APCB_Itinerary;
-import com.apcb.utils.ticketsHandler.entities.APCB_Travel;
 import com.apcb.utils.ticketsHandler.entities.APCB_Passenger;
+import com.apcb.utils.ticketsHandler.entities.APCB_Travel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.GET;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
  
@@ -64,51 +66,60 @@ public class AirTcketService {
  
     @GET
     @Produces("text/html")
-    @Path("/{request}")
-    public String getAirTicket(@PathParam("request") String strRequest) {
-         Response response = new Response();
+    //@Path("/{request}")
+    public String getAirTicket(//@PathParam("request") String strRequest
+        @DefaultValue("0") @QueryParam("sesionId") String sesionId,
+        @DefaultValue("true") @QueryParam("withReturn") boolean withReturn,
+        @DefaultValue("") @QueryParam("departure_airport") String departure_airport,
+        @DefaultValue("") @QueryParam("arrival_airport") String arrival_airport,
+        @DefaultValue("") @QueryParam("departure_date") String departure_date,
+        @DefaultValue("0") @QueryParam("passengers_ADT") Integer passengers_ADT,
+        @DefaultValue("0") @QueryParam("passengers_CNN") Integer passengers_CNN,
+        @DefaultValue("0") @QueryParam("passengers_INF") Integer passengers_INF,
+        @DefaultValue("ECO") @QueryParam("CabinType") String CabinType){
+        log.info("AirTcketService -> getAirTicket ini");
+        Response response = new Response();
         try {
             
             Request request = new Request(); 
             APCB_Travel travel = new APCB_Travel();
 
-            travel.setCabin(CabinTypeEnum.Economy);
+            travel.setCabin(CabinTypeEnum.getByCode(CabinType));
             travel.setDirectFlightsOnly(true);
             
             APCB_Itinerary itinerary = new APCB_Itinerary();
             Calendar calendar = Calendar.getInstance();
             try{
-                String[] fecha = strRequest.split("-");
+                String[] fecha = departure_date.split("-");
                 calendar.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1])-1, Integer.parseInt(fecha[0]),0,0,0);
             }catch(Exception e){
                 e.printStackTrace();
                 response.setMessage(new Message(MessagesTypeEnum.ErrorValidate_DateFormatIncorrect));
                 return gson.toJson(response).replace("\\", "");
             }
-           
             itinerary.setDepartureDateTime(calendar);
-            itinerary.setOriginLocationCode(LocationEnum.CCS);
-            itinerary.setDestinationLocationCode(LocationEnum.PMV);
+            itinerary.setOriginLocationCode(LocationEnum.getByCode(departure_airport));
             
+            itinerary.setDestinationLocationCode(LocationEnum.getByCode(arrival_airport));
             travel.putItinerary(itinerary);
             
             APCB_Passenger passanger = new APCB_Passenger();
             passanger.setPassangerType(PassangerTypeEnum.Adulto);
-            passanger.setPassangerQuantity(3);
+            passanger.setPassangerQuantity(passengers_ADT);
             travel.putPassangers(passanger);
             
             passanger = new APCB_Passenger();
             passanger.setPassangerType(PassangerTypeEnum.Niño);
-            passanger.setPassangerQuantity(2);
+            passanger.setPassangerQuantity(passengers_CNN);
             travel.putPassangers(passanger);
             
             passanger = new APCB_Passenger();
             passanger.setPassangerType(PassangerTypeEnum.Infante);
-            passanger.setPassangerQuantity(1);
+            passanger.setPassangerQuantity(passengers_INF);
             travel.putPassangers(passanger);
             
             
-            request.setSesionId("1");
+            request.setSesionId(sesionId);
             log.info(gson.toJson(request.getSesionId()));
             request.setMessage(new Message(MessagesTypeEnum.Ok));
             log.info(gson.toJson(request.getMessage()));
@@ -126,6 +137,7 @@ public class AirTcketService {
             response.setMessage(new Message(MessagesTypeEnum.Error_AplicationErrorNotHandler));
             log.error(response.getMessage().getMsgDesc(), e);
         }
+        log.info("AirTcketService -> getAirTicket end");
         return gson.toJson(response).replace("\\", "");
     }
  

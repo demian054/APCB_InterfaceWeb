@@ -8,8 +8,10 @@ package com.apcb.interfaceWeb.process;
 
 import com.apcb.business.services.APCBBusinessServices;
 import com.apcb.utils.conection.ServiceGenerator;
+import com.apcb.utils.entities.Message;
 import com.apcb.utils.entities.Request;
 import com.apcb.utils.entities.Response;
+import com.apcb.utils.ticketsHandler.Enums.MessagesTypeEnum;
 import com.google.gson.Gson;
 import java.io.IOException;
 import org.apache.log4j.LogManager;
@@ -24,10 +26,15 @@ public class APCBInterfaceWebProcess {
     private Gson gson = new Gson(); 
 
     public Response webTicketAirAvailAndPrice(Request request) throws IOException, Exception {
- 
+        log.info("APCBInterfaceWebProcess -> webTicketAirAvailAndPrice ini");
+        Response response = new Response();
         APCBBusinessServices businessServices = ServiceGenerator.ServiceGenerator(APCBBusinessServices.class);
-        Response response = gson.fromJson(businessServices.ticketAirAvailAndPrice(gson.toJson(request)),Response.class);
-
+        if (businessServices==null){
+            response.setMessage(new Message(MessagesTypeEnum.ErrorAccess_Business));
+            return response;
+        }
+        response = gson.fromJson(businessServices.ticketAirAvailAndPrice(gson.toJson(request)),Response.class);
+        log.info("APCBInterfaceWebProcess -> webTicketAirAvailAndPrice end");
         return response;
     }
     
