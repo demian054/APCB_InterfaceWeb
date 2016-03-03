@@ -39,4 +39,19 @@ public interface APCBBusinessServices {
         @WebParam(name = "request", targetNamespace = "")
         String request);
 
+    /**
+     * 
+     * @param request
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "ticketReservAndPay", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TicketReservAndPay")
+    @ResponseWrapper(localName = "ticketReservAndPayResponse", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TicketReservAndPayResponse")
+    @Action(input = "http://services.business.apcb.com/APCBBusinessServices/ticketReservAndPayRequest", output = "http://services.business.apcb.com/APCBBusinessServices/ticketReservAndPayResponse")
+    public String ticketReservAndPay(
+        @WebParam(name = "request", targetNamespace = "")
+        String request);
+
 }

@@ -26,10 +26,10 @@ import com.apcb.utils.entities.Beam;
 import com.apcb.utils.entities.Message;
 import com.apcb.utils.entities.Request;
 import com.apcb.utils.entities.Response;
-import com.apcb.utils.ticketsHandler.Enums.CabinTypeEnum;
-import com.apcb.utils.ticketsHandler.Enums.LocationEnum;
-import com.apcb.utils.ticketsHandler.Enums.MessagesTypeEnum;
-import com.apcb.utils.ticketsHandler.Enums.PassangerTypeEnum;
+import com.apcb.utils.ticketsHandler.enums.CabinTypeEnum;
+import com.apcb.utils.ticketsHandler.enums.LocationEnum;
+import com.apcb.utils.ticketsHandler.enums.MessagesTypeEnum;
+import com.apcb.utils.ticketsHandler.enums.PassangerTypeEnum;
 import com.apcb.utils.ticketsHandler.entities.APCB_Itinerary;
 import com.apcb.utils.ticketsHandler.entities.APCB_Passenger;
 import com.apcb.utils.ticketsHandler.entities.APCB_Travel;
@@ -54,9 +54,9 @@ import org.apache.log4j.Logger;
 public class AirTcketService {
     private static final Logger log = LogManager.getLogger(AirTcketService.class);
     private Gson gson = new Gson();
- 
+ /*
     @Context
-    private UriInfo context;
+    private UriInfo context;*/
  
     public AirTcketService() {
         /*GsonBuilder gsonBuilder = new GsonBuilder();
@@ -124,7 +124,7 @@ public class AirTcketService {
             request.setMessage(new Message(MessagesTypeEnum.Ok));
             log.info(gson.toJson(request.getMessage()));
             //request.setBeam(gson.toJson(itinerary), Itinerary.class);
-            request.setBeam(new Beam(gson.toJson(travel), APCB_Travel.class.getSimpleName()));
+            request.setTravelInfo(travel);
             
             log.info(gson.toJson(request));
             
@@ -142,9 +142,10 @@ public class AirTcketService {
     }
  
     @POST
-    @Consumes("application/x-www-form-urlencoded")
+    //@Consumes("application/x-www-form-urlencoded")
     @Produces("text/plain")
-    public String postHandler(String content) {
-        return content;
+    public String ticketReservAndPay(@QueryParam("strRequest") String strRequest) {
+        log.info("postHandler");
+        return "postHandler";
     }
 }
