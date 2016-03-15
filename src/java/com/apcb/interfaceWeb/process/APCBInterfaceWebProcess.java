@@ -27,7 +27,7 @@ public class APCBInterfaceWebProcess {
 
     public Response webTicketAirAvailAndPrice(Request request) throws IOException, Exception {
         log.info("APCBInterfaceWebProcess -> webTicketAirAvailAndPrice ini");
-        Response response = new Response();
+        Response response = new Response(request.getSesionId());
         APCBBusinessServices businessServices = ServiceGenerator.ServiceGenerator(APCBBusinessServices.class);
         if (businessServices==null){
             response.setMessage(new Message(MessagesTypeEnum.ErrorAccess_Business));
@@ -40,7 +40,7 @@ public class APCBInterfaceWebProcess {
     
     public Response webTicketReservAndPay(Request request) throws IOException, Exception {
         log.info("APCBInterfaceWebProcess -> webTicketReservAndPay ini");
-        Response response = new Response();
+        Response response = new Response(request.getSesionId());
         APCBBusinessServices businessServices = ServiceGenerator.ServiceGenerator(APCBBusinessServices.class);
         if (businessServices==null){
             response.setMessage(new Message(MessagesTypeEnum.ErrorAccess_Business));
@@ -48,6 +48,19 @@ public class APCBInterfaceWebProcess {
         }
         response = gson.fromJson(businessServices.ticketReservAndPay(gson.toJson(request)),Response.class);
         log.info("APCBInterfaceWebProcess -> webTicketReservAndPay end");
+        return response;
+    }
+
+    public Response webConsultReservOrTicket(Request request) throws IOException, Exception  {
+        log.info("APCBInterfaceWebProcess -> webConsultReservOrTicket ini");
+        Response response = new Response(request.getSesionId());
+        APCBBusinessServices businessServices = ServiceGenerator.ServiceGenerator(APCBBusinessServices.class);
+        if (businessServices==null){
+            response.setMessage(new Message(MessagesTypeEnum.ErrorAccess_Business));
+            return response;
+        }
+        response = gson.fromJson(businessServices.consultReservOrTicket(gson.toJson(request)),Response.class);
+        log.info("APCBInterfaceWebProcess -> webConsultReservOrTicket end");
         return response;
     }
     

@@ -24,10 +24,12 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _ConsultReservOrTicketResponse_QNAME = new QName("http://services.business.apcb.com/", "consultReservOrTicketResponse");
     private final static QName _TicketReservAndPay_QNAME = new QName("http://services.business.apcb.com/", "ticketReservAndPay");
     private final static QName _TicketAirAvailAndPrice_QNAME = new QName("http://services.business.apcb.com/", "ticketAirAvailAndPrice");
     private final static QName _TicketAirAvailAndPriceResponse_QNAME = new QName("http://services.business.apcb.com/", "ticketAirAvailAndPriceResponse");
     private final static QName _TicketReservAndPayResponse_QNAME = new QName("http://services.business.apcb.com/", "ticketReservAndPayResponse");
+    private final static QName _ConsultReservOrTicket_QNAME = new QName("http://services.business.apcb.com/", "consultReservOrTicket");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.apcb.business.services
@@ -37,11 +39,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ConsultReservOrTicketResponse }
+     * 
+     */
+    public ConsultReservOrTicketResponse createConsultReservOrTicketResponse() {
+        return new ConsultReservOrTicketResponse();
+    }
+
+    /**
      * Create an instance of {@link TicketReservAndPay }
      * 
      */
     public TicketReservAndPay createTicketReservAndPay() {
         return new TicketReservAndPay();
+    }
+
+    /**
+     * Create an instance of {@link ConsultReservOrTicket }
+     * 
+     */
+    public ConsultReservOrTicket createConsultReservOrTicket() {
+        return new ConsultReservOrTicket();
     }
 
     /**
@@ -66,6 +84,15 @@ public class ObjectFactory {
      */
     public TicketAirAvailAndPrice createTicketAirAvailAndPrice() {
         return new TicketAirAvailAndPrice();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultReservOrTicketResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "consultReservOrTicketResponse")
+    public JAXBElement<ConsultReservOrTicketResponse> createConsultReservOrTicketResponse(ConsultReservOrTicketResponse value) {
+        return new JAXBElement<ConsultReservOrTicketResponse>(_ConsultReservOrTicketResponse_QNAME, ConsultReservOrTicketResponse.class, null, value);
     }
 
     /**
@@ -102,6 +129,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "ticketReservAndPayResponse")
     public JAXBElement<TicketReservAndPayResponse> createTicketReservAndPayResponse(TicketReservAndPayResponse value) {
         return new JAXBElement<TicketReservAndPayResponse>(_TicketReservAndPayResponse_QNAME, TicketReservAndPayResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultReservOrTicket }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "consultReservOrTicket")
+    public JAXBElement<ConsultReservOrTicket> createConsultReservOrTicket(ConsultReservOrTicket value) {
+        return new JAXBElement<ConsultReservOrTicket>(_ConsultReservOrTicket_QNAME, ConsultReservOrTicket.class, null, value);
     }
 
 }
