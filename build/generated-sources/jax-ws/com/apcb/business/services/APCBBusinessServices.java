@@ -32,6 +32,36 @@ public interface APCBBusinessServices {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "ticketAirAvail", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TicketAirAvail")
+    @ResponseWrapper(localName = "ticketAirAvailResponse", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TicketAirAvailResponse")
+    @Action(input = "http://services.business.apcb.com/APCBBusinessServices/ticketAirAvailRequest", output = "http://services.business.apcb.com/APCBBusinessServices/ticketAirAvailResponse")
+    public String ticketAirAvail(
+        @WebParam(name = "request", targetNamespace = "")
+        String request);
+
+    /**
+     * 
+     * @param request
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "ticketAirPrice", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TicketAirPrice")
+    @ResponseWrapper(localName = "ticketAirPriceResponse", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TicketAirPriceResponse")
+    @Action(input = "http://services.business.apcb.com/APCBBusinessServices/ticketAirPriceRequest", output = "http://services.business.apcb.com/APCBBusinessServices/ticketAirPriceResponse")
+    public String ticketAirPrice(
+        @WebParam(name = "request", targetNamespace = "")
+        String request);
+
+    /**
+     * 
+     * @param request
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "ticketReservAndPay", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TicketReservAndPay")
     @ResponseWrapper(localName = "ticketReservAndPayResponse", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TicketReservAndPayResponse")
     @Action(input = "http://services.business.apcb.com/APCBBusinessServices/ticketReservAndPayRequest", output = "http://services.business.apcb.com/APCBBusinessServices/ticketReservAndPayResponse")
@@ -47,10 +77,10 @@ public interface APCBBusinessServices {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "ticketAirAvailAndPrice", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TicketAirAvailAndPrice")
-    @ResponseWrapper(localName = "ticketAirAvailAndPriceResponse", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.TicketAirAvailAndPriceResponse")
-    @Action(input = "http://services.business.apcb.com/APCBBusinessServices/ticketAirAvailAndPriceRequest", output = "http://services.business.apcb.com/APCBBusinessServices/ticketAirAvailAndPriceResponse")
-    public String ticketAirAvailAndPrice(
+    @RequestWrapper(localName = "consultReserv", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.ConsultReserv")
+    @ResponseWrapper(localName = "consultReservResponse", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.ConsultReservResponse")
+    @Action(input = "http://services.business.apcb.com/APCBBusinessServices/consultReservRequest", output = "http://services.business.apcb.com/APCBBusinessServices/consultReservResponse")
+    public String consultReserv(
         @WebParam(name = "request", targetNamespace = "")
         String request);
 
@@ -62,10 +92,10 @@ public interface APCBBusinessServices {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "consultReservOrTicket", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.ConsultReservOrTicket")
-    @ResponseWrapper(localName = "consultReservOrTicketResponse", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.ConsultReservOrTicketResponse")
-    @Action(input = "http://services.business.apcb.com/APCBBusinessServices/consultReservOrTicketRequest", output = "http://services.business.apcb.com/APCBBusinessServices/consultReservOrTicketResponse")
-    public String consultReservOrTicket(
+    @RequestWrapper(localName = "consultTicket", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.ConsultTicket")
+    @ResponseWrapper(localName = "consultTicketResponse", targetNamespace = "http://services.business.apcb.com/", className = "com.apcb.business.services.ConsultTicketResponse")
+    @Action(input = "http://services.business.apcb.com/APCBBusinessServices/consultTicketRequest", output = "http://services.business.apcb.com/APCBBusinessServices/consultTicketResponse")
+    public String consultTicket(
         @WebParam(name = "request", targetNamespace = "")
         String request);
 

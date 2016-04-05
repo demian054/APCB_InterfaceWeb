@@ -4,40 +4,78 @@
 <xsd:import namespace="http://services.business.apcb.com/" schemaLocation="http://localhost:8080/APCB_Business/APCBBusinessServices?xsd=1" />
 </xsd:schema>
 </types>
+<message name="ticketAirAvail">
+<part name="parameters" element="tns:ticketAirAvail" />
+</message>
+<message name="ticketAirAvailResponse">
+<part name="parameters" element="tns:ticketAirAvailResponse" />
+</message>
+<message name="ticketAirPrice">
+<part name="parameters" element="tns:ticketAirPrice" />
+</message>
+<message name="ticketAirPriceResponse">
+<part name="parameters" element="tns:ticketAirPriceResponse" />
+</message>
 <message name="ticketReservAndPay">
 <part name="parameters" element="tns:ticketReservAndPay" />
 </message>
 <message name="ticketReservAndPayResponse">
 <part name="parameters" element="tns:ticketReservAndPayResponse" />
 </message>
-<message name="ticketAirAvailAndPrice">
-<part name="parameters" element="tns:ticketAirAvailAndPrice" />
+<message name="consultReserv">
+<part name="parameters" element="tns:consultReserv" />
 </message>
-<message name="ticketAirAvailAndPriceResponse">
-<part name="parameters" element="tns:ticketAirAvailAndPriceResponse" />
+<message name="consultReservResponse">
+<part name="parameters" element="tns:consultReservResponse" />
 </message>
-<message name="consultReservOrTicket">
-<part name="parameters" element="tns:consultReservOrTicket" />
+<message name="consultTicket">
+<part name="parameters" element="tns:consultTicket" />
 </message>
-<message name="consultReservOrTicketResponse">
-<part name="parameters" element="tns:consultReservOrTicketResponse" />
+<message name="consultTicketResponse">
+<part name="parameters" element="tns:consultTicketResponse" />
 </message>
 <portType name="APCBBusinessServices">
+<operation name="ticketAirAvail">
+<input wsam:Action="http://services.business.apcb.com/APCBBusinessServices/ticketAirAvailRequest" message="tns:ticketAirAvail" />
+<output wsam:Action="http://services.business.apcb.com/APCBBusinessServices/ticketAirAvailResponse" message="tns:ticketAirAvailResponse" />
+</operation>
+<operation name="ticketAirPrice">
+<input wsam:Action="http://services.business.apcb.com/APCBBusinessServices/ticketAirPriceRequest" message="tns:ticketAirPrice" />
+<output wsam:Action="http://services.business.apcb.com/APCBBusinessServices/ticketAirPriceResponse" message="tns:ticketAirPriceResponse" />
+</operation>
 <operation name="ticketReservAndPay">
 <input wsam:Action="http://services.business.apcb.com/APCBBusinessServices/ticketReservAndPayRequest" message="tns:ticketReservAndPay" />
 <output wsam:Action="http://services.business.apcb.com/APCBBusinessServices/ticketReservAndPayResponse" message="tns:ticketReservAndPayResponse" />
 </operation>
-<operation name="ticketAirAvailAndPrice">
-<input wsam:Action="http://services.business.apcb.com/APCBBusinessServices/ticketAirAvailAndPriceRequest" message="tns:ticketAirAvailAndPrice" />
-<output wsam:Action="http://services.business.apcb.com/APCBBusinessServices/ticketAirAvailAndPriceResponse" message="tns:ticketAirAvailAndPriceResponse" />
+<operation name="consultReserv">
+<input wsam:Action="http://services.business.apcb.com/APCBBusinessServices/consultReservRequest" message="tns:consultReserv" />
+<output wsam:Action="http://services.business.apcb.com/APCBBusinessServices/consultReservResponse" message="tns:consultReservResponse" />
 </operation>
-<operation name="consultReservOrTicket">
-<input wsam:Action="http://services.business.apcb.com/APCBBusinessServices/consultReservOrTicketRequest" message="tns:consultReservOrTicket" />
-<output wsam:Action="http://services.business.apcb.com/APCBBusinessServices/consultReservOrTicketResponse" message="tns:consultReservOrTicketResponse" />
+<operation name="consultTicket">
+<input wsam:Action="http://services.business.apcb.com/APCBBusinessServices/consultTicketRequest" message="tns:consultTicket" />
+<output wsam:Action="http://services.business.apcb.com/APCBBusinessServices/consultTicketResponse" message="tns:consultTicketResponse" />
 </operation>
 </portType>
 <binding name="APCBBusinessServicesPortBinding" type="tns:APCBBusinessServices">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+<operation name="ticketAirAvail">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="ticketAirPrice">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
 <operation name="ticketReservAndPay">
 <soap:operation soapAction="" />
 <input>
@@ -47,7 +85,7 @@
 <soap:body use="literal" />
 </output>
 </operation>
-<operation name="ticketAirAvailAndPrice">
+<operation name="consultReserv">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
@@ -56,7 +94,7 @@
 <soap:body use="literal" />
 </output>
 </operation>
-<operation name="consultReservOrTicket">
+<operation name="consultTicket">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />

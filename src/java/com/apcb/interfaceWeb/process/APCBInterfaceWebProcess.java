@@ -14,8 +14,9 @@ import com.apcb.utils.entities.Response;
 import com.apcb.utils.ticketsHandler.enums.MessagesTypeEnum;
 import com.google.gson.Gson;
 import java.io.IOException;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /**
  *
@@ -25,16 +26,16 @@ public class APCBInterfaceWebProcess {
     private Logger log = LogManager.getLogger(APCBInterfaceWebProcess.class);
     private Gson gson = new Gson(); 
 
-    public Response webTicketAirAvailAndPrice(Request request) throws IOException, Exception {
-        log.info("APCBInterfaceWebProcess -> webTicketAirAvailAndPrice ini");
+    public Response webTicketAirAvail(Request request) throws IOException, Exception {
+        log.info("APCBInterfaceWebProcess -> webTicketAirAvail ini");
         Response response = new Response(request.getSesionId());
         APCBBusinessServices businessServices = ServiceGenerator.ServiceGenerator(APCBBusinessServices.class);
         if (businessServices==null){
             response.setMessage(new Message(MessagesTypeEnum.ErrorAccess_Business));
             return response;
         }
-        response = gson.fromJson(businessServices.ticketAirAvailAndPrice(gson.toJson(request)),Response.class);
-        log.info("APCBInterfaceWebProcess -> webTicketAirAvailAndPrice end");
+        response = gson.fromJson(businessServices.ticketAirAvail(gson.toJson(request)),Response.class);
+        log.info("APCBInterfaceWebProcess -> webTicketAirAvail end");
         return response;
     }
     
@@ -51,17 +52,45 @@ public class APCBInterfaceWebProcess {
         return response;
     }
 
-    public Response webConsultReservOrTicket(Request request) throws IOException, Exception  {
-        log.info("APCBInterfaceWebProcess -> webConsultReservOrTicket ini");
+    public Response webConsultReserv(Request request) throws IOException, Exception  {
+        log.info("APCBInterfaceWebProcess -> webConsultReserv ini");
         Response response = new Response(request.getSesionId());
         APCBBusinessServices businessServices = ServiceGenerator.ServiceGenerator(APCBBusinessServices.class);
         if (businessServices==null){
             response.setMessage(new Message(MessagesTypeEnum.ErrorAccess_Business));
             return response;
         }
-        response = gson.fromJson(businessServices.consultReservOrTicket(gson.toJson(request)),Response.class);
-        log.info("APCBInterfaceWebProcess -> webConsultReservOrTicket end");
+        response = gson.fromJson(businessServices.consultReserv(gson.toJson(request)),Response.class);
+        log.info("APCBInterfaceWebProcess -> webConsultReserv end");
         return response;
     }
+    
+    public Response webConsultTicket(Request request) throws IOException, Exception  {
+        log.info("APCBInterfaceWebProcess -> webConsultTicket ini");
+        Response response = new Response(request.getSesionId());
+        APCBBusinessServices businessServices = ServiceGenerator.ServiceGenerator(APCBBusinessServices.class);
+        if (businessServices==null){
+            response.setMessage(new Message(MessagesTypeEnum.ErrorAccess_Business));
+            return response;
+        }
+        response = gson.fromJson(businessServices.consultTicket(gson.toJson(request)),Response.class);
+        log.info("APCBInterfaceWebProcess -> webConsultTicket end");
+        return response;
+    }
+    
+    public Response webTicketAirPrice(Request request) throws IOException, Exception {
+        log.info("APCBInterfaceWebProcess -> webTicketAirPrice ini");
+        Response response = new Response(request.getSesionId());
+        APCBBusinessServices businessServices = ServiceGenerator.ServiceGenerator(APCBBusinessServices.class);
+        if (businessServices==null){
+            response.setMessage(new Message(MessagesTypeEnum.ErrorAccess_Business));
+            return response;
+        }
+        response = gson.fromJson(businessServices.ticketAirPrice(gson.toJson(request)),Response.class);
+        log.info("APCBInterfaceWebProcess -> webTicketAirPrice end");
+        return response;
+    }
+        
+        
     
 }

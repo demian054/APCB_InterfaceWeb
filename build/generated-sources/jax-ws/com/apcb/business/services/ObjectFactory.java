@@ -24,12 +24,16 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _ConsultReservOrTicketResponse_QNAME = new QName("http://services.business.apcb.com/", "consultReservOrTicketResponse");
     private final static QName _TicketReservAndPay_QNAME = new QName("http://services.business.apcb.com/", "ticketReservAndPay");
-    private final static QName _TicketAirAvailAndPrice_QNAME = new QName("http://services.business.apcb.com/", "ticketAirAvailAndPrice");
-    private final static QName _TicketAirAvailAndPriceResponse_QNAME = new QName("http://services.business.apcb.com/", "ticketAirAvailAndPriceResponse");
+    private final static QName _ConsultTicket_QNAME = new QName("http://services.business.apcb.com/", "consultTicket");
+    private final static QName _TicketAirAvail_QNAME = new QName("http://services.business.apcb.com/", "ticketAirAvail");
+    private final static QName _TicketAirAvailResponse_QNAME = new QName("http://services.business.apcb.com/", "ticketAirAvailResponse");
+    private final static QName _ConsultTicketResponse_QNAME = new QName("http://services.business.apcb.com/", "consultTicketResponse");
     private final static QName _TicketReservAndPayResponse_QNAME = new QName("http://services.business.apcb.com/", "ticketReservAndPayResponse");
-    private final static QName _ConsultReservOrTicket_QNAME = new QName("http://services.business.apcb.com/", "consultReservOrTicket");
+    private final static QName _TicketAirPriceResponse_QNAME = new QName("http://services.business.apcb.com/", "ticketAirPriceResponse");
+    private final static QName _ConsultReserv_QNAME = new QName("http://services.business.apcb.com/", "consultReserv");
+    private final static QName _TicketAirPrice_QNAME = new QName("http://services.business.apcb.com/", "ticketAirPrice");
+    private final static QName _ConsultReservResponse_QNAME = new QName("http://services.business.apcb.com/", "consultReservResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.apcb.business.services
@@ -39,11 +43,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ConsultReservOrTicketResponse }
+     * Create an instance of {@link TicketAirAvailResponse }
      * 
      */
-    public ConsultReservOrTicketResponse createConsultReservOrTicketResponse() {
-        return new ConsultReservOrTicketResponse();
+    public TicketAirAvailResponse createTicketAirAvailResponse() {
+        return new TicketAirAvailResponse();
+    }
+
+    /**
+     * Create an instance of {@link TicketAirAvail }
+     * 
+     */
+    public TicketAirAvail createTicketAirAvail() {
+        return new TicketAirAvail();
+    }
+
+    /**
+     * Create an instance of {@link ConsultTicket }
+     * 
+     */
+    public ConsultTicket createConsultTicket() {
+        return new ConsultTicket();
     }
 
     /**
@@ -55,11 +75,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ConsultReservOrTicket }
+     * Create an instance of {@link ConsultReservResponse }
      * 
      */
-    public ConsultReservOrTicket createConsultReservOrTicket() {
-        return new ConsultReservOrTicket();
+    public ConsultReservResponse createConsultReservResponse() {
+        return new ConsultReservResponse();
+    }
+
+    /**
+     * Create an instance of {@link TicketAirPrice }
+     * 
+     */
+    public TicketAirPrice createTicketAirPrice() {
+        return new TicketAirPrice();
+    }
+
+    /**
+     * Create an instance of {@link ConsultReserv }
+     * 
+     */
+    public ConsultReserv createConsultReserv() {
+        return new ConsultReserv();
+    }
+
+    /**
+     * Create an instance of {@link TicketAirPriceResponse }
+     * 
+     */
+    public TicketAirPriceResponse createTicketAirPriceResponse() {
+        return new TicketAirPriceResponse();
     }
 
     /**
@@ -71,28 +115,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TicketAirAvailAndPriceResponse }
+     * Create an instance of {@link ConsultTicketResponse }
      * 
      */
-    public TicketAirAvailAndPriceResponse createTicketAirAvailAndPriceResponse() {
-        return new TicketAirAvailAndPriceResponse();
-    }
-
-    /**
-     * Create an instance of {@link TicketAirAvailAndPrice }
-     * 
-     */
-    public TicketAirAvailAndPrice createTicketAirAvailAndPrice() {
-        return new TicketAirAvailAndPrice();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultReservOrTicketResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "consultReservOrTicketResponse")
-    public JAXBElement<ConsultReservOrTicketResponse> createConsultReservOrTicketResponse(ConsultReservOrTicketResponse value) {
-        return new JAXBElement<ConsultReservOrTicketResponse>(_ConsultReservOrTicketResponse_QNAME, ConsultReservOrTicketResponse.class, null, value);
+    public ConsultTicketResponse createConsultTicketResponse() {
+        return new ConsultTicketResponse();
     }
 
     /**
@@ -105,21 +132,39 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TicketAirAvailAndPrice }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultTicket }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "ticketAirAvailAndPrice")
-    public JAXBElement<TicketAirAvailAndPrice> createTicketAirAvailAndPrice(TicketAirAvailAndPrice value) {
-        return new JAXBElement<TicketAirAvailAndPrice>(_TicketAirAvailAndPrice_QNAME, TicketAirAvailAndPrice.class, null, value);
+    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "consultTicket")
+    public JAXBElement<ConsultTicket> createConsultTicket(ConsultTicket value) {
+        return new JAXBElement<ConsultTicket>(_ConsultTicket_QNAME, ConsultTicket.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TicketAirAvailAndPriceResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TicketAirAvail }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "ticketAirAvailAndPriceResponse")
-    public JAXBElement<TicketAirAvailAndPriceResponse> createTicketAirAvailAndPriceResponse(TicketAirAvailAndPriceResponse value) {
-        return new JAXBElement<TicketAirAvailAndPriceResponse>(_TicketAirAvailAndPriceResponse_QNAME, TicketAirAvailAndPriceResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "ticketAirAvail")
+    public JAXBElement<TicketAirAvail> createTicketAirAvail(TicketAirAvail value) {
+        return new JAXBElement<TicketAirAvail>(_TicketAirAvail_QNAME, TicketAirAvail.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TicketAirAvailResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "ticketAirAvailResponse")
+    public JAXBElement<TicketAirAvailResponse> createTicketAirAvailResponse(TicketAirAvailResponse value) {
+        return new JAXBElement<TicketAirAvailResponse>(_TicketAirAvailResponse_QNAME, TicketAirAvailResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultTicketResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "consultTicketResponse")
+    public JAXBElement<ConsultTicketResponse> createConsultTicketResponse(ConsultTicketResponse value) {
+        return new JAXBElement<ConsultTicketResponse>(_ConsultTicketResponse_QNAME, ConsultTicketResponse.class, null, value);
     }
 
     /**
@@ -132,12 +177,39 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultReservOrTicket }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link TicketAirPriceResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "consultReservOrTicket")
-    public JAXBElement<ConsultReservOrTicket> createConsultReservOrTicket(ConsultReservOrTicket value) {
-        return new JAXBElement<ConsultReservOrTicket>(_ConsultReservOrTicket_QNAME, ConsultReservOrTicket.class, null, value);
+    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "ticketAirPriceResponse")
+    public JAXBElement<TicketAirPriceResponse> createTicketAirPriceResponse(TicketAirPriceResponse value) {
+        return new JAXBElement<TicketAirPriceResponse>(_TicketAirPriceResponse_QNAME, TicketAirPriceResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultReserv }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "consultReserv")
+    public JAXBElement<ConsultReserv> createConsultReserv(ConsultReserv value) {
+        return new JAXBElement<ConsultReserv>(_ConsultReserv_QNAME, ConsultReserv.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TicketAirPrice }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "ticketAirPrice")
+    public JAXBElement<TicketAirPrice> createTicketAirPrice(TicketAirPrice value) {
+        return new JAXBElement<TicketAirPrice>(_TicketAirPrice_QNAME, TicketAirPrice.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ConsultReservResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.business.apcb.com/", name = "consultReservResponse")
+    public JAXBElement<ConsultReservResponse> createConsultReservResponse(ConsultReservResponse value) {
+        return new JAXBElement<ConsultReservResponse>(_ConsultReservResponse_QNAME, ConsultReservResponse.class, null, value);
     }
 
 }

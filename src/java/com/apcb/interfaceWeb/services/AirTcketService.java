@@ -33,7 +33,6 @@ import com.apcb.utils.ticketsHandler.entities.APCB_Itinerary;
 import com.apcb.utils.ticketsHandler.entities.APCB_Passenger;
 import com.apcb.utils.ticketsHandler.entities.APCB_Travel;
 import com.apcb.utils.ticketsHandler.enums.UniqueIDTypeEnum;
-import com.apcb.utils.utils.SessionIdentifierGenerator;
 import com.google.gson.Gson;
 import java.util.Calendar;
 import javax.ws.rs.DefaultValue;
@@ -41,9 +40,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import org.apache.log4j.MDC;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.ThreadContext;
  
 @Path("airTcket")
 public class AirTcketService {
@@ -74,8 +73,8 @@ public class AirTcketService {
         @DefaultValue("0") @QueryParam("passengers_INF") Integer passengers_INF,
         @DefaultValue("ECO") @QueryParam("CabinType") String CabinType,
         @DefaultValue("1") @QueryParam("transactionId") String transactionId){
-        MDC.put("sessionId", sesionId);
-        MDC.put("sessionIP", sesionIP);
+        ThreadContext.put("sessionId", sesionId);
+        ThreadContext.put("sessionIP", sesionIP);
         log.info("AirTcketService -> getAirTicket ini");
         
         Response response;
@@ -134,7 +133,7 @@ public class AirTcketService {
             //log.info(gson.toJson(request.getBeam()));
             log.info("requestTotal getAirTicket->"+gson.toJson(request));
             APCBInterfaceWebProcess process = new APCBInterfaceWebProcess();
-            response = process.webTicketAirAvailAndPrice(request);
+            response = process.webTicketAirAvail(request);
             log.info("responseTotal getAirTicket->"+gson.toJson(request));
         } catch (Exception e) {
             response = new Response(request.getSesionId());
@@ -175,8 +174,8 @@ public class AirTcketService {
     
     @GET
     @Produces("text/plain")
-    @Path("/getConsultReservOrTicket")
-    public String getConsultReservOrTicket(
+    @Path("/getConsultReserv")
+    public String getConsultReserv(
             @DefaultValue("0") @QueryParam("sesionId") String sesionId,
             @QueryParam("type") String strType, 
             @QueryParam("code") String strCode) {
@@ -185,9 +184,7 @@ public class AirTcketService {
         try {
 
             APCB_Travel travel = new APCB_Travel();
-            if (strType.equalsIgnoreCase(UniqueIDTypeEnum.TicketNumber.getDescription())){
-                travel.setTicket(strCode);
-            } else if (strType.equalsIgnoreCase(UniqueIDTypeEnum.BookingReferenceID.getDescription())){
+            if (strType.equalsIgnoreCase(UniqueIDTypeEnum.BookingReferenceID.getDescription())){
                 travel.setBookingReferenceID(strCode);
             } else {
                log.error("Error en tipo de consulta");
@@ -195,7 +192,7 @@ public class AirTcketService {
             //Request request = new Request(strRequest);
             log.info("requestTotal ConsultReservOrTicket->"+gson.toJson(request));
             APCBInterfaceWebProcess process = new APCBInterfaceWebProcess();
-            response = process.webConsultReservOrTicket(request);
+            response = process.webConsultReserv(request);
             log.info("responseTotal ConsultReservOrTicket->"+gson.toJson(request));
         } catch (Exception e) {
             response = new Response(request.getSesionId());
@@ -205,4 +202,32 @@ public class AirTcketService {
         log.info("postHandler");
         return gson.toJson(response);
     }
+    
+    @GET
+    @Produces("text/plain")
+    @Path("/getAirTicketPrice")
+    public String getAirTicketPrice(@QueryParam("strRequest") String strRequest) {
+        Request request = new Request();
+        Response response;
+        try {
+            request = new Request(strRequest);
+            log.info("requestTotal ticketReservAndPay->"+gson.toJson(request));
+             
+            APCBInterfaceWebProcess process = new APCBInterfaceWebProcess();
+            
+            response = process.webTicketAirPrice(request);
+            log.info("responseTotal ticketReservAndPay->"+gson.toJson(request));
+        } catch (Exception e) {
+            response = new Response(request.getSesionId());
+            response.setMessage(new Message(MessagesTypeEnum.Error_AplicationErrorNotHandler));
+            log.error(response.getMessage().getMsgDesc(), e);
+        }
+        /*log.info("AirTcketService -> getAirTicket end");
+        return gson.toJson(response).replace("\\", "");  
+        */
+        
+        log.info("postHandler");
+        return gson.toJson(response);
+    }
+
 }
